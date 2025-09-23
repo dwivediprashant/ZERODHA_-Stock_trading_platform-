@@ -1,8 +1,9 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import HomePage from "./landing_pages/home/HomePage";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <div>Zerodha</div>
+    <HomePage />
   </StrictMode>
 );
