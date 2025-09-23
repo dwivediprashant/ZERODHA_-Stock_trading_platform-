@@ -7,12 +7,10 @@ import Footer from "../Footer";
 function Productpage() {
   return (
     <>
-      <Navbar />
       <Hero />
       <LeftImage />
       <RightImage />
       <Partners />
-      <Footer />
     </>
   );
 }

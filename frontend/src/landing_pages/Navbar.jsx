@@ -1,10 +1,11 @@
+import { Link } from "react-router-dom";
 function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-white border-bottom pt-3 pb-3 sticky-top row">
       <div className="container col-9">
-        <a
+        <Link
           className="navbar-brand d-flex justify-content-center align-items-center me-0"
-          href="#"
+          to="/"
         >
           <img
             src="/media/images/logo.svg"
@@ -12,7 +13,7 @@ function Navbar() {
             height="18"
             className="d-inline-block align-text-top"
           />
-        </a>
+        </Link>
 
         {/* Toggler Button */}
         <button
@@ -30,21 +31,21 @@ function Navbar() {
         {/* Collapsible Menu */}
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div className="navbar-nav ms-auto">
-            <a className="nav-link me-3" href="#">
+            <Link className="nav-link me-3" to="/signup">
               Signup
-            </a>
-            <a className="nav-link me-3" href="#">
+            </Link>
+            <Link className="nav-link me-3" to="/about">
               About
-            </a>
-            <a className="nav-link me-3" href="#">
+            </Link>
+            <Link className="nav-link me-3" to="/products">
               Products
-            </a>
-            <a className="nav-link me-3" href="#">
+            </Link>
+            <Link className="nav-link me-3" to="/pricing">
               Pricing
-            </a>
-            <a className="nav-link me-3" href="#">
+            </Link>
+            <Link className="nav-link me-3" to="/support">
               Support
-            </a>
+            </Link>
           </div>
         </div>
       </div>

@@ -9,13 +9,11 @@ import Navbar from "../Navbar";
 function HomePage() {
   return (
     <>
-      <Navbar />
       <Hero />
       <Highlights />
       <Pricing />
       <Eductaion />
       <OpenAccount />
-      <Footer />
     </>
   );
 }
