@@ -7,11 +7,9 @@ import Footer from "../Footer";
 function SignupPage() {
   return (
     <>
-      <Navbar />
       <Form />
       <Investment />
       <StepsToAccount />
-      <Footer />
     </>
   );
 }

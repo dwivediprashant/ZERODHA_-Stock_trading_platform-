@@ -5,10 +5,8 @@ import Footer from "../Footer";
 function Pricingpage() {
   return (
     <>
-      <Navbar />
       <Hero />
       <Table />
-      <Footer />
     </>
   );
 }

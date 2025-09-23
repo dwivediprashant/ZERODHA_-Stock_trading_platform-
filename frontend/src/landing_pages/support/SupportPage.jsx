@@ -5,10 +5,8 @@ import Options from "./Options";
 function SupportPage() {
   return (
     <>
-      <Navbar />
       <Hero />
       <Options />
-      <Footer />
     </>
   );
 }
