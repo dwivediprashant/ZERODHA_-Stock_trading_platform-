@@ -1,12 +1,10 @@
-import Hero from "./Hero";
-import Table from "./Table";
-import Navbar from "../Navbar";
-import Footer from "../Footer";
+import EquityTable from "./EquityTable";
+
 function Pricingpage() {
   return (
     <>
-      <Hero />
-      <Table />
+      {/* default table means i considered that at starting equity table will show on pricing page  */}
+      <EquityTable />
     </>
   );
 }
