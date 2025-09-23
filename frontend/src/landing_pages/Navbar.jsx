@@ -1,9 +1,9 @@
 function Navbar() {
   return (
-    <nav className="navbar navbar-expand-lg bg-body-light bg-white border-bottom pt-3 pb-3 sticky-top">
-      <div className="container ">
+    <nav className="navbar navbar-expand-lg navbar-light bg-white border-bottom pt-3 pb-3 sticky-top row">
+      <div className="container col-9">
         <a
-          className="navbar-brand d-flex  justify-content-center align-items-center me-0"
+          className="navbar-brand d-flex justify-content-center align-items-center me-0"
           href="#"
         >
           <img
@@ -13,6 +13,8 @@ function Navbar() {
             className="d-inline-block align-text-top"
           />
         </a>
+
+        {/* Toggler Button */}
         <button
           className="navbar-toggler"
           type="button"
@@ -24,11 +26,10 @@ function Navbar() {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div
-          className="collapse navbar-collapse d-flex  justify-content-end align-items-center"
-          id="navbarNavAltMarkup"
-        >
-          <div className="navbar-nav ">
+
+        {/* Collapsible Menu */}
+        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div className="navbar-nav ms-auto">
             <a className="nav-link me-3" href="#">
               Signup
             </a>

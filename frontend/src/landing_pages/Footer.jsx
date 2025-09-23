@@ -170,7 +170,7 @@ function Footer() {
         </div>
       </section>
       <div className="text-start p-4 container">
-        <p style={{ fontSize: "12px" }}>
+        <span style={{ fontSize: "12px" }}>
           <p>
             Zerodha Broking Ltd.: Member of NSE, BSE​ &​ MCX – SEBI Registration
             no.: INZ000031633 CDSL/NSDL: Depository services through Zerodha
@@ -229,7 +229,7 @@ function Footer() {
             claiming to be part of Zerodha and offering such services, please
             <a href=""> create a ticket here.</a>
           </p>
-        </p>
+        </span>
       </div>
       <div
         className="text-center p-4"
