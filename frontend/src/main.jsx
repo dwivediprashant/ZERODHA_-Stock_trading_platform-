@@ -9,6 +9,9 @@ import SupportPage from "./landing_pages/support/SupportPage";
 import Navbar from "./landing_pages/Navbar";
 import Footer from "./landing_pages/Footer";
 import NotFound from "./landing_pages/NotFound";
+import CurrencyTable from "./landing_pages/pricing/CurrencyTable";
+import EquityTable from "./landing_pages/pricing/EquityTable";
+import CommodityTable from "./landing_pages/pricing/CommodityTable";
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <Navbar />
@@ -19,6 +22,9 @@ createRoot(document.getElementById("root")).render(
       <Route path="/products" element={<ProductPage />}></Route>
       <Route path="/pricing" element={<PricingPage />}></Route>
       <Route path="/support" element={<SupportPage />}></Route>
+      <Route path="/pricing/equity" element={<EquityTable />}></Route>
+      <Route path="/pricing/currency" element={<CurrencyTable />}></Route>
+      <Route path="/pricing/commodity" element={<CommodityTable />}></Route>
       <Route path="*" element={<NotFound />}></Route>
     </Routes>
     <Footer />
