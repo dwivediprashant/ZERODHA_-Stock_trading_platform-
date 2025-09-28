@@ -1,0 +1,16 @@
+#row:hover {
+  box-shadow: 0 0 4px black;
+}
+#row {
+  background-color: aliceblue;
+}
+.menu {
+  text-decoration: none;
+}
+.menu:hover {
+  color: red !important;
+}
+.active-menu {
+  color: red;
+  text-decoration: none;
+}
