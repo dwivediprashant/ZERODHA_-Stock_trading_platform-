@@ -1,5 +1,8 @@
 #row:hover {
-  box-shadow: 0 0 4px black;
+  /* box-shadow: 0 0 4px black; */
+  transition-duration: 0.25s;
+  color: white;
+  background-color: #0d6efd;
 }
 #row {
   background-color: aliceblue;
@@ -8,7 +11,7 @@
   text-decoration: none;
 }
 .menu:hover {
-  color: red !important;
+  color: red;
 }
 .active-menu {
   color: red;

@@ -1,6 +1,6 @@
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import HomePage from "./Components/landing/Home";
+import HomePage from "./Components/home/Home";
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <Routes>
