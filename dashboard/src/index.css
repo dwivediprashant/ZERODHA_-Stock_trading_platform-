@@ -1,9 +1,3 @@
-#row:hover {
-  /* box-shadow: 0 0 4px black; */
-  transition-duration: 0.25s;
-  color: white;
-  background-color: #0d6efd;
-}
 #row {
   background-color: aliceblue;
 }
@@ -16,4 +10,25 @@
 .active-menu {
   color: red;
   text-decoration: none;
+}
+.profit {
+  color: green !important;
+}
+.loss {
+  color: red !important;
+}
+
+.custom-tooltip .tooltip-inner {
+  display: flex;
+  justify-content: center;
+  background-color: transparent;
+}
+.custom-tooltip {
+  display: flex !important;
+  justify-content: center;
+  background-color: white;
+  /* background-color: #0d6efd !important; */
+  width: 300px !important;
+  border: 1px solid;
+  border-radius: 0.4rem;
 }

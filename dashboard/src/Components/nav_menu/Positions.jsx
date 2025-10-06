@@ -1,72 +1,45 @@
+import { positions } from "../../data/data";
 function Positions() {
-  // sample metrics (replace with real data)
-  const metrics = {
-    totalInvestment: "29,875.",
-    currentValue: "31,428.",
-    pnl: "1,553.40",
-    pnlPercent: "+5.20%",
-  };
-
-  // sample columns to render the header
-  const columns = [
-    "Instrument",
-    "Qty.",
-    "Avg. cost",
-    "LTP",
-    "Cur. val",
-    "P&L",
-    "Net chg.",
-    "Day chg.",
-  ];
-
   return (
-    <div className="holdings-page  mt-5">
-      {/* Main content row: left thin column and right main area */}
-      <div className="row">
-        {/* Right main column */}
-        <div className="col">
-          <div className="card border-0">
-            <div className="card-body p-0">
-              {/* Holdings header */}
-              <div className="d-flex justify-content-between align-items-center mb-3">
-                <h5 className="mb-0">
-                  Positions <span className="text-muted fs-6">(2)</span>
-                </h5>
-                <div className="text-muted small">
-                  {" "}
-                  {/* optional actions */}{" "}
-                </div>
-              </div>
+    <div className="mt-3">
+      <h3>Positions ({positions.length})</h3>
+      <div>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Instrument</th>
+              <th>Qty</th>
+              <th>Avg cost</th>
+              <th>LTP</th>
+              <th>P&L</th>
+              <th>Change</th>
+            </tr>
+          </thead>
 
-              {/* Table header */}
-              <div className="table-responsive">
-                <table className="table table-borderless holdings-table">
-                  <thead>
-                    <tr className="small text-muted">
-                      {columns.map((col) => (
-                        <th key={col} className="py-3 border-top border-bottom">
-                          {col}
-                        </th>
-                      ))}
-                    </tr>
-                  </thead>
+          {positions.map((stock, idx) => {
+            const currVal = stock.price * stock.qty;
+            const isProfit = currVal - stock.avg * stock.qty >= 0;
+            const profitClass = isProfit ? "profit" : "loss";
+            const dayClass = stock.isLoss ? "loss" : "profit";
+            return (
+              <tbody key={idx}>
+                <tr>
+                  <td>{stock.product}</td>
+                  <td>{stock.name}</td>
+                  <td>{stock.qty}</td>
+                  <td>{stock.avg.toFixed(2)}</td>
+                  <td>{stock.price.toFixed(2)}</td>
+                  <td className={profitClass}>
+                    {(currVal - stock.avg * stock.qty).toFixed(2)}
+                  </td>
 
-                  {/* Empty body — show no holdings message */}
-                  <tbody>
-                    <tr>
-                      <td
-                        colSpan={columns.length}
-                        className="py-5 text-center text-muted"
-                      >
-                        No Positions to display
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
+                  <td className={dayClass}>{stock.day}</td>
+                </tr>
+              </tbody>
+            );
+          })}
+        </table>
       </div>
     </div>
   );

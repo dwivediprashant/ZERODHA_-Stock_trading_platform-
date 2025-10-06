@@ -1,16 +1,19 @@
 import Row from "./Row";
+import { watchlist } from "../../data/data";
 function RowTab() {
   return (
     <>
-      <Row title="INFY" numbers={-1.6} />
-      <Row title="ONGC" numbers={-1.6} />
-      <Row title="TCS" numbers={-1.6} />
-      <Row title="KPITECH" numbers={-1.6} />
-      <Row title="QUICKHEAL" numbers={-1.6} />
-      <Row title="WIPRO" numbers={-1.6} />
-      <Row title="M&M" numbers={-1.6} />
-      <Row title="RELIANCE" numbers={-1.6} />
-      <Row title="HCL" numbers={-1.6} />
+      <div className="d-flex align-items-center justify-content-between">
+        <input
+          type="text"
+          placeholder="Search eg:infy, bse, nifty fut weekly, gold msc"
+          className="form-control m-3"
+        />
+        <span>{watchlist.length}/20</span>
+      </div>
+      {watchlist.map((stock, idx) => {
+        return <Row stock={stock} key={idx} />;
+      })}
     </>
   );
 }
