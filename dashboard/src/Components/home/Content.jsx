@@ -1,8 +1,8 @@
 import RowTab from "./RowTab";
-function Content() {
+function Content({ setFlash }) {
   return (
     <>
-      <RowTab />
+      <RowTab setFlash={setFlash} />
     </>
   );
 }

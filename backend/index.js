@@ -19,6 +19,7 @@ connectDB();
 
 const Holdings = require("./models/HoldingsModel");
 const Positions = require("./models/PositionsModel");
+const Order = require("./models/OrdersModel");
 
 //--------------------------
 
@@ -38,6 +39,26 @@ app.get("/allPositions", async (req, res) => {
   let positions = await Positions.find({});
   res.json(positions);
 });
+//------orders get request-------
+app.get("/allOrders", async (req, res) => {
+  let orders = await Order.find({});
+  res.json(orders);
+});
+//-----post route fro buy or sell the order
+app.post("/newOrder", async (req, res) => {
+  const newOrder = new Order({
+    name: req.body.name,
+    price: req.body.price,
+    qty: req.body.qty,
+    mode: req.body.mode,
+  });
+  await newOrder.save();
+  res.json({
+    type: "success",
+    message: `Stock ${req.body.mode} successfully !`,
+  });
+});
+//--------listen port at 8080--
 app.listen(port, () => {
   console.log(`server running at ${port}`);
 });

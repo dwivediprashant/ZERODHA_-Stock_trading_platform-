@@ -72,7 +72,7 @@ function TopRight() {
           </Link>
         </div>
         <div>
-          <i class="fa-solid fa-user"></i>
+          <i className="fa-solid fa-user"></i>
         </div>
       </div>
     </div>
