@@ -1,11 +1,16 @@
 import { useState, useRef } from "react";
 import { Tooltip, Overlay } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import BuyWindow from "../utils/BuyWindow";
 
-function Row({ stock }) {
+function Row({ stock, setFlash }) {
   const [show, setShow] = useState(false);
   const target = useRef(null);
-
+  //-modal pop effect---
+  const [isPop, setIsPop] = useState(false);
+  const handlePopEffect = () => {
+    setIsPop(!isPop);
+  };
   return (
     <div
       className={`d-flex justify-content-between align-items-center p-1 fw-semisolid mt-3
@@ -39,7 +44,11 @@ function Row({ stock }) {
               onMouseLeave={() => setShow(false)}
               className="d-flex gap-2"
             >
-              <button className="btn btn-success btn-sm" title="Buy">
+              <button
+                className="btn btn-success btn-sm"
+                title="Buy"
+                onClick={handlePopEffect}
+              >
                 Buy
               </button>
               <button className="btn btn-danger btn-sm" title="Sell">
@@ -49,12 +58,15 @@ function Row({ stock }) {
                 <i class="fa-solid fa-chart-simple"></i>
               </button>
               <button className="btn btn-info btn-sm" title="More">
-                <i class="fa-solid fa-ellipsis"></i>
+                <i className="fa-solid fa-ellipsis"></i>
               </button>
             </div>
           </Tooltip>
         )}
       </Overlay>
+      {isPop && (
+        <BuyWindow setIsPop={setIsPop} setFlash={setFlash} uid={stock.name} />
+      )}
     </div>
   );
 }

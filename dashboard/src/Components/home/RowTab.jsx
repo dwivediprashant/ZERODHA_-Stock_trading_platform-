@@ -1,6 +1,6 @@
 import Row from "./Row";
 import { watchlist } from "../../data/data";
-function RowTab() {
+function RowTab({ setFlash }) {
   return (
     <>
       <div className="d-flex align-items-center justify-content-between">
@@ -11,9 +11,14 @@ function RowTab() {
         />
         <span>{watchlist.length}/20</span>
       </div>
-      {watchlist.map((stock, idx) => {
-        return <Row stock={stock} key={idx} />;
-      })}
+      <div
+        className="scroll-container overflow-auto"
+        style={{ maxHeight: "70vh" }}
+      >
+        {watchlist.map((stock, idx) => {
+          return <Row stock={stock} key={idx} setFlash={setFlash} />;
+        })}
+      </div>
     </>
   );
 }
