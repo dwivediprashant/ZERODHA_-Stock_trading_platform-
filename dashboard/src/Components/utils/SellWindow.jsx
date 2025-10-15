@@ -1,16 +1,16 @@
 import { useState } from "react";
 import axios from "axios";
-function BuyWindow({ setIsPop, uid, setFlash }) {
+function SellWindow({ setSellPop, uid, setFlash }) {
   let [quantity, setQuantity] = useState(1);
   let [price, setPrice] = useState(0.0);
-  const handleBuyClick = async () => {
+  const handleSellClick = async () => {
     const res = await axios.post("http://localhost:8080/newOrder", {
       name: uid,
       price: price,
       qty: quantity,
-      mode: "buy",
+      mode: "sell",
     });
-    setIsPop(false);
+    setSellPop(false);
     setFlash({ type: res.data.type, message: res.data.message });
     setTimeout(() => setFlash(null), 3000);
   };
@@ -26,7 +26,7 @@ function BuyWindow({ setIsPop, uid, setFlash }) {
           if (!form.checkValidity()) {
             e.stopPropagation();
           } else {
-            handleBuyClick();
+            handleSellClick();
           }
 
           form.classList.add("was-validated");
@@ -35,7 +35,7 @@ function BuyWindow({ setIsPop, uid, setFlash }) {
         <button
           type="button"
           className="btn-close close-window-btn  "
-          onClick={() => setIsPop(false)}
+          onClick={() => setSellPop(false)}
         ></button>
         <div className="form-floating mb-3">
           <input
@@ -82,13 +82,13 @@ function BuyWindow({ setIsPop, uid, setFlash }) {
         </div>
 
         <div className="d-flex justify-content-between p-2">
-          <button className="btn  btn-success me-3 " type="submit">
-            Buy
+          <button className="btn  btn-warning me-3 " type="submit">
+            Sell
           </button>
           <button
             type="button"
             className="btn  btn-danger"
-            onClick={() => setIsPop(false)}
+            onClick={() => setSellPop(false)}
           >
             Cancel
           </button>
@@ -98,4 +98,4 @@ function BuyWindow({ setIsPop, uid, setFlash }) {
   );
 }
 
-export default BuyWindow;
+export default SellWindow;

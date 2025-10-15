@@ -2,14 +2,26 @@ import { useState, useRef } from "react";
 import { Tooltip, Overlay } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import BuyWindow from "../utils/BuyWindow";
+import SellWindow from "../utils/SellWindow";
+import AnalyticsWindow from "../utils/AnalyticsWindow";
 
 function Row({ stock, setFlash }) {
   const [show, setShow] = useState(false);
   const target = useRef(null);
-  //-modal pop effect---
+  //-buy pop effect---
   const [isPop, setIsPop] = useState(false);
   const handlePopEffect = () => {
     setIsPop(!isPop);
+  };
+  //-sell pop effect---
+  const [sellPop, setSellPop] = useState(false);
+  const handleSellPopWindow = () => {
+    setSellPop(!sellPop);
+  };
+  //----anlysis window pop effect
+  const [analyticsPop, setAnalyticsPop] = useState(false);
+  const handleAnalyticsPopWindow = () => {
+    setAnalyticsPop(!analyticsPop);
   };
   return (
     <div
@@ -25,7 +37,7 @@ function Row({ stock, setFlash }) {
       </div>
       <div className="d-flex justify-content-between w-50">
         <span>{stock.percent}</span>
-        <span>{stock.price}</span>
+        <span>&#8377;{stock.price}</span>
         <span>
           {stock.isDown ? (
             <i className="fa-solid fa-caret-down"></i>
@@ -51,21 +63,39 @@ function Row({ stock, setFlash }) {
               >
                 Buy
               </button>
-              <button className="btn btn-danger btn-sm" title="Sell">
+              <button
+                className="btn btn-danger btn-sm"
+                title="Sell"
+                onClick={handleSellPopWindow}
+              >
                 Sell
               </button>
-              <button className="btn btn-warning btn-sm" title="Analytics">
-                <i class="fa-solid fa-chart-simple"></i>
+              <button
+                className="btn btn-warning btn-sm"
+                title="Analytics"
+                onClick={handleAnalyticsPopWindow}
+              >
+                <i className="fa-solid fa-chart-simple"></i>
               </button>
-              <button className="btn btn-info btn-sm" title="More">
+              {/* <button className="btn btn-info btn-sm" title="More">
                 <i className="fa-solid fa-ellipsis"></i>
-              </button>
+              </button> */}
             </div>
           </Tooltip>
         )}
       </Overlay>
       {isPop && (
         <BuyWindow setIsPop={setIsPop} setFlash={setFlash} uid={stock.name} />
+      )}
+      {sellPop && (
+        <SellWindow
+          setSellPop={setSellPop}
+          setFlash={setFlash}
+          uid={stock.name}
+        />
+      )}
+      {analyticsPop && (
+        <AnalyticsWindow uid={stock.name} setAnalyticsPop={setAnalyticsPop} />
       )}
     </div>
   );

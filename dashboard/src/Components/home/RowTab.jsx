@@ -11,10 +11,7 @@ function RowTab({ setFlash }) {
         />
         <span>{watchlist.length}/20</span>
       </div>
-      <div
-        className="scroll-container overflow-auto"
-        style={{ maxHeight: "70vh" }}
-      >
+      <div className="scroll-container overflow-auto">
         {watchlist.map((stock, idx) => {
           return <Row stock={stock} key={idx} setFlash={setFlash} />;
         })}
