@@ -49,7 +49,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   height: 60%;
   width: 60%;
   position: fixed;
@@ -61,7 +60,23 @@
 .scroll-container {
   direction: rtl; /* flips content for scrollbar on left */
 }
-
 .scroll-container > * {
   direction: ltr; /* flip inner content back to normal */
+}
+.close-window-btn {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+}
+.analytics-pop {
+  background-color: white;
+}
+.analytics-top {
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  background-color: whitesmoke;
+  /* backdrop-filter: blur(100px); */
+  box-shadow: 0 0 10px gray;
+  padding: 2rem;
 }

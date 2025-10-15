@@ -4,7 +4,7 @@ import { useState } from "react";
 function HomePage() {
   let [flash, setFlash] = useState(null);
   return (
-    <div className="overflow-hidden">
+    <div>
       {flash && (
         <div
           className={`alert ${
