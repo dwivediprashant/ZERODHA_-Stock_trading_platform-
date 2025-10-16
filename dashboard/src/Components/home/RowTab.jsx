@@ -1,5 +1,5 @@
 import Row from "./Row";
-import { watchlist } from "../../data/data";
+import { availableStocks } from "../../data/data";
 function RowTab({ setFlash }) {
   return (
     <>
@@ -9,10 +9,10 @@ function RowTab({ setFlash }) {
           placeholder="Search eg:infy, bse, nifty fut weekly, gold msc"
           className="form-control m-3"
         />
-        <span>{watchlist.length}/20</span>
+        <span>{availableStocks.length}/20</span>
       </div>
       <div className="scroll-container overflow-auto">
-        {watchlist.map((stock, idx) => {
+        {availableStocks.map((stock, idx) => {
           return <Row stock={stock} key={idx} setFlash={setFlash} />;
         })}
       </div>

@@ -4,11 +4,12 @@ function BuyWindow({ setIsPop, uid, setFlash }) {
   let [quantity, setQuantity] = useState(1);
   let [price, setPrice] = useState(0.0);
   const handleBuyClick = async () => {
-    const res = await axios.post("http://localhost:8080/newOrder", {
+    const res = await axios.post("http://localhost:8080/orders", {
       name: uid,
       price: price,
       qty: quantity,
       mode: "buy",
+      isExecuted: false, //for now all request mark as accepted later on first set to pending then accepted
     });
     setIsPop(false);
     setFlash({ type: res.data.type, message: res.data.message });

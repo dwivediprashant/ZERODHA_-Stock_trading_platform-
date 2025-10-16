@@ -16,7 +16,7 @@ function TopRight() {
           height="40px"
         />
       </div>
-      <div className="d-flex justify-content-between  col-10">
+      <div className="d-flex justify-content-between align-items-center col-10">
         <div>
           <Link
             to="/"
@@ -46,11 +46,11 @@ function TopRight() {
         </div>
         <div>
           <Link
-            to="/positions"
+            to="/markettrends"
             onClick={() => handleMenuClick(3)}
             className={selectedMenu === 3 ? "active-menu" : "menu"}
           >
-            Positions
+            Market trends
           </Link>
         </div>
         <div>
@@ -71,8 +71,41 @@ function TopRight() {
             Apps
           </Link>
         </div>
-        <div>
-          <i className="fa-solid fa-user"></i>
+        <div className="dropdown">
+          <button
+            className="btn btn-sm btn-primary rounded-circle"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <i className="fa-solid fa-user"></i>
+          </button>
+
+          <ul className="dropdown-menu text-center p-2">
+            <li>
+              <Link
+                to="/portfolio"
+                onClick={() => handleMenuClick(6)}
+                className={`dropdown-item ${
+                  selectedMenu === 6 ? "active-menu" : ""
+                }`}
+              >
+                Portfolio
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                to="/logout"
+                onClick={() => handleMenuClick(7)}
+                className={`dropdown-item ${
+                  selectedMenu === 7 ? "active-menu" : ""
+                }`}
+              >
+                Logout
+              </Link>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
