@@ -1,4 +1,4 @@
-export const watchlist = [
+export const availableStocks = [
   {
     name: "INFY",
     price: 1555.45,

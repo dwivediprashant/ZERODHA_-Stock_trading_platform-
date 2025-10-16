@@ -22,9 +22,9 @@ ChartJS.register(
   LineController,
   BarController
 );
-import { watchlist } from "../../data/data";
+import { availableStocks } from "../../data/data";
 function AnalyticsWindow({ uid, setAnalyticsPop }) {
-  const currStock = watchlist.filter((stock, idx) => {
+  const currStock = availableStocks.filter((stock, idx) => {
     return stock.name == uid;
   });
   let lastYear = new Date();

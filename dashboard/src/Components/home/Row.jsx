@@ -2,7 +2,6 @@ import { useState, useRef } from "react";
 import { Tooltip, Overlay } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import BuyWindow from "../utils/BuyWindow";
-import SellWindow from "../utils/SellWindow";
 import AnalyticsWindow from "../utils/AnalyticsWindow";
 
 function Row({ stock, setFlash }) {
@@ -12,11 +11,6 @@ function Row({ stock, setFlash }) {
   const [isPop, setIsPop] = useState(false);
   const handlePopEffect = () => {
     setIsPop(!isPop);
-  };
-  //-sell pop effect---
-  const [sellPop, setSellPop] = useState(false);
-  const handleSellPopWindow = () => {
-    setSellPop(!sellPop);
   };
   //----anlysis window pop effect
   const [analyticsPop, setAnalyticsPop] = useState(false);
@@ -40,9 +34,9 @@ function Row({ stock, setFlash }) {
         <span>&#8377;{stock.price}</span>
         <span>
           {stock.isDown ? (
-            <i className="fa-solid fa-caret-down"></i>
+            <i className="fa-solid fa-caret-down fa-fade"></i>
           ) : (
-            <i className="fa-solid fa-caret-up"></i>
+            <i className="fa-solid fa-caret-up fa-bounce"></i>
           )}
         </span>
       </div>
@@ -64,13 +58,6 @@ function Row({ stock, setFlash }) {
                 Buy
               </button>
               <button
-                className="btn btn-danger btn-sm"
-                title="Sell"
-                onClick={handleSellPopWindow}
-              >
-                Sell
-              </button>
-              <button
                 className="btn btn-warning btn-sm"
                 title="Analytics"
                 onClick={handleAnalyticsPopWindow}
@@ -87,13 +74,7 @@ function Row({ stock, setFlash }) {
       {isPop && (
         <BuyWindow setIsPop={setIsPop} setFlash={setFlash} uid={stock.name} />
       )}
-      {sellPop && (
-        <SellWindow
-          setSellPop={setSellPop}
-          setFlash={setFlash}
-          uid={stock.name}
-        />
-      )}
+
       {analyticsPop && (
         <AnalyticsWindow uid={stock.name} setAnalyticsPop={setAnalyticsPop} />
       )}

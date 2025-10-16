@@ -18,9 +18,9 @@ connectDB();
 //--------models---------------
 
 const Holdings = require("./models/HoldingsModel");
-const Positions = require("./models/PositionsModel");
 const Order = require("./models/OrdersModel");
-
+//-----------------------Available stocks data-------------------------------------
+const { availableStocks } = require("../dashboard/src/data/data");
 //--------------------------
 
 const port = process.env.PORT || 8080;
@@ -29,34 +29,75 @@ const port = process.env.PORT || 8080;
 app.get("/", (req, res) => {
   res.send("Zerodha ");
 });
-//------------all holdings----------
-app.get("/allHoldings", async (req, res) => {
+//---------get---all holdings----------
+app.get("/holdings", async (req, res) => {
   let holdings = await Holdings.find({});
   res.json(holdings);
 });
-//---------positiins get----------
-app.get("/allPositions", async (req, res) => {
-  let positions = await Positions.find({});
-  res.json(positions);
-});
+
 //------orders get request-------
-app.get("/allOrders", async (req, res) => {
+app.get("/orders", async (req, res) => {
   let orders = await Order.find({});
   res.json(orders);
 });
-//-----post route fro buy or sell the order
-app.post("/newOrder", async (req, res) => {
+//-----post route for buy or sell the order
+
+app.post("/orders", async (req, res) => {
   const newOrder = new Order({
     name: req.body.name,
     price: req.body.price,
     qty: req.body.qty,
     mode: req.body.mode,
+    isExecuted: req.body.isExecuted,
   });
+
   await newOrder.save();
   res.json({
     type: "success",
-    message: `Stock ${req.body.mode} successfully !`,
+    message: `${req.body.name} ${req.body.qty} stock(s) ${req.body.mode} successfully !`,
   });
+});
+//-----put request orders----------
+app.put("/orders/:id", async (req, res) => {
+  const { id } = req.params;
+  const updatedOrder = await Order.findByIdAndUpdate(
+    id,
+    { isExecuted: true },
+    { new: true }
+  );
+  const stock = availableStocks.filter((stock, idx) => {
+    return stock.name == updatedOrder.name;
+  });
+  console.log(updatedOrder);
+  if (updatedOrder.mode == "buy") {
+    const newHolding = new Holdings({
+      name: updatedOrder.name,
+      qty: updatedOrder.qty,
+      userPrice: updatedOrder.price,
+      perStockPrice: updatedOrder.price / updatedOrder.qty,
+      currPrice: stock[0].price,
+      profitOrLoss: stock[0].price - updatedOrder.price / updatedOrder.qty,
+    });
+    await newHolding.save();
+  } else if (updatedOrder.mode == "sell") {
+    // SELL to reduce qty or remove
+    let holding = await Holdings.findOne({ name: updatedOrder.name });
+    console.log(holding);
+    if (holding) {
+      holding.qty -= updatedOrder.qty;
+      holding = await Holdings.findOneAndUpdate(
+        { name: updatedOrder.name },
+        { qty: holding.qty },
+        { new: true }
+      );
+      console.log(holding);
+      if (holding.qty <= 0) {
+        let res = await Holdings.deleteOne({ name: updatedOrder.name });
+        console.log(res);
+      }
+    }
+  }
+  res.json(updatedOrder);
 });
 //--------listen port at 8080--
 app.listen(port, () => {

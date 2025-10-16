@@ -30,7 +30,7 @@ function HomePage() {
           <LeftBar setFlash={setFlash} />
         </div>
         <div className="col-6 ">
-          <RightBar />
+          <RightBar setFlash={setFlash} />
         </div>
       </div>
     </div>
